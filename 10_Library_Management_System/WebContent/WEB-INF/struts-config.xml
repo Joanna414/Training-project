@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://jakarta.apache.org/struts/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<!-- List of forms in application -->
+	<form-beans>
+		<form-bean name="libraryForm"
+			type="com.montran.form.LibraryForm"></form-bean>
+		<form-bean name="deleteIssueBookForm"
+			type="com.montran.form.DeleteBookForm"></form-bean>
+	</form-beans>
+
+	<!-- List of action in application -->
+	<action-mappings>
+		<action path="/bookIssueDetailsAction"
+			type="com.montran.action.BookIssueDetailsAction" name="libraryForm">
+			<forward name="success" path="/index.jsp" />
+		</action>
+
+		<action path="/newBookIssue"
+			type="com.montran.action.IssueNewBookAction" name="libraryForm"
+			validate="true" input="/issueNewBook.jsp">
+			<forward name="success" path="/issueNewBook.jsp" />
+		</action>
+		<action path="/issueBook"
+			type="com.montran.action.IssueNewBookAction" name="libraryForm">
+			<forward name="book" path="/issueNewBook.jsp" />
+			<forward name="member" path="/issueNewBook.jsp" />
+			<forward name="success" path="/bookIssueDetailsAction.do" />
+		</action>
+
+		<action path="/updateBook"
+			type="com.montran.action.UpdateBookAction" name="libraryForm">
+			<forward name="success" path="/bookIssueDetailsAction.do"></forward>
+		</action>
+
+		<action path="/deleteBookAction"
+			type="com.montran.action.DeleteBookAction"
+			name="deleteIssueBookForm" validate="true" input="/deleteIssue.jsp">
+			<forward name="success" path="/bookIssueDetailsAction.do" />
+		</action>
+	</action-mappings>
+
+	<message-resources parameter="messages"></message-resources>
+</struts-config>
